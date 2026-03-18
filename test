@@ -1,0 +1,16 @@
+import telebot
+import os
+
+TOKEN = os.getenv("8306856832:AAG_7D7NVAbF4-q7CfrYZ6B7KLTiV37lsbY")
+
+bot = telebot.TeleBot(TOKEN)
+
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.send_message(message.chat.id, "Я запущен в облаке 😏")
+
+@bot.message_handler(func=lambda message: True)
+def echo(message):
+    bot.send_message(message.chat.id, message.text)
+
+bot.polling()
